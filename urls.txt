@@ -1,0 +1,2 @@
+https://caas.mars.picoctf.net/cowsay/-ls
+https://medium.com/@UsuarioXer0/picoctf-caas-4d575aad2f2e

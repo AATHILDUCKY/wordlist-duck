@@ -22,7 +22,6 @@ common_words = [
     "yourselves"
 ]
 
-
 def get_text_from_url(url):
     try:
         response = requests.get(url)
@@ -32,36 +31,34 @@ def get_text_from_url(url):
         text = soup.get_text()
         text = re.sub(r'\s+', ' ', text)  # Replace multiple whitespace with single space
         return text
-    except Exception as e:
-        print(f"Error fetching {url}: {e}")
-        return ""
-
+    except:
+        return None  # Return None if there's any error
 
 def create_wordlist(urls, output_file):
     all_words = Counter()
-
+    
     for url in urls:
         text = get_text_from_url(url)
-        words = re.findall(r'\b\w+\b', text.lower())  # Extract words and convert to lower case
-        words = [word for word in words if word not in common_words]  # Remove common words
-        all_words.update(words)
-
+        if text is not None:  # Proceed only if text was successfully fetched
+            words = re.findall(r'\b\w+\b', text.lower())  # Extract words and convert to lower case
+            words = [word for word in words if word not in common_words]  # Remove common words
+            all_words.update(words)
+    
     # Remove duplicates
     unique_words = set(all_words.keys())
-
+    
     with open(output_file, "w") as f:
         for word in sorted(unique_words):
             f.write(word + "\n")
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate a wordlist from the content of URLs.")
     parser.add_argument("-u", "--urls", required=True, help="File containing the list of URLs")
     parser.add_argument("-o", "--output", required=True, help="Output file name for the wordlist")
-
+    
     args = parser.parse_args()
-
+    
     with open(args.urls) as f:
         urls = [line.strip() for line in f if line.strip()]
-
+    
     create_wordlist(urls, args.output)

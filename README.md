@@ -49,3 +49,5 @@ To display help information about the script, use the -h or --help flag:
   ```
 
 
+This `README.md` provides a comprehensive guide on how to use the tool, including installation instructions, usage, examples, and help information.
+

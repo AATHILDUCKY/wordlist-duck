@@ -24,4 +24,28 @@ This tool extracts text from a list of URLs and generates a wordlist by removing
    ```bash
    pip install -r requirements.txt
 
+## Usage
+
+To use the tool, run the script with the following command-line arguments:
+
+- '-u' or '--urls': File containing the list of URLs (one URL per line).
+- '-o' or '--output': Output file name for the generated wordlist.
+
+   ```bash
+   python code.py -u urls.txt -o output.txt
+
+## Example
+
+   ```bash
+   python code.py -u example_urls.txt -o wordlist.txt
+   ```
+
+## help
+
+To display help information about the script, use the -h or --help flag:
+
+  ```bash
+    python code.py -h
+  ```
+
 
